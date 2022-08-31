@@ -1,0 +1,48 @@
+spring:
+  application:
+    name: mybatisplus
+  main:
+    allow-bean-definition-overriding: true
+  datasource:
+    #driver-class-name: com.mysql.cj.jdbc.Driver
+    #url: jdbc:mysql://localhost:3306/mybatis_plus?characterEncoding=utf8&useSSL=false
+    #username: root
+    #password: root
+    dynamic:
+      primary: master
+      strict: false
+      datasource:
+        master:
+          url: jdbc:mysql://localhost:3306/mybatis_plus?characterEncoding=utf8&useSSL=false
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          username: root
+          password: root
+          type: com.alibaba.druid.pool.DruidDataSource
+          druid:
+            min-idle: 1
+            initial-size: 3
+            max-active: 5
+            min-evictable-idle-time-millis: 30000
+            max-evictable-idle-time-millis: 60000
+        slave_1:
+          url: jdbc:mysql://localhost:3306/mybatis_plus_1?characterEncoding=utf8&useSSL=false
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          username: root
+          password: root
+          type: com.alibaba.druid.pool.DruidDataSource
+          druid:
+            min-idle: 1
+            initial-size: 3
+            max-active: 5
+            min-evictable-idle-time-millis: 30000
+            max-evictable-idle-time-millis: 60000
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  mapper-locations: classpath:/mapper/*.xml
+  global-config:
+    db-config:
+      id-type: auto
+server:
+  port: 10086
